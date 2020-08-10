@@ -33,7 +33,7 @@ function Remove-LMDevice {
             $ConfirmPreference = 'None'
         }
 
-        if ($PSCmdlet.ShouldProcess($Id,"Removing device from LogicMonitor")) {
+        if ($PSCmdlet.ShouldProcess($Id,"Remove device from LogicMonitor")) {
             $null = Invoke-LMRestMethod -method "DELETE" -uri $uri
         }
 
