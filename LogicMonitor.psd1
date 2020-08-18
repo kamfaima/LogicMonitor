@@ -25,6 +25,8 @@
                             'Get-LMCollector',
                             'Get-LMCollectorGroup',
                             'Get-LMDevice',
+                            'Get-LMSDT',
+                            'Get-LMSDTHistory',
                             'Invoke-LMRestMethod',
                             'Remove-LMAPICredential',
                             'Remove-LMDevice',
@@ -42,8 +44,10 @@
 
     # Format files (.ps1xml) to be loaded when importing this module
     FormatsToProcess = @(
-                            'ObjectDefinitions/LogicMonitor.Device.ps1xml',
                             'ObjectDefinitions/LogicMonitor.Collector.ps1xml',
-                            'ObjectDefinitions/LogicMonitor.CollectorGroup.ps1xml'
+                            'ObjectDefinitions/LogicMonitor.CollectorGroup.ps1xml',
+                            'ObjectDefinitions/LogicMonitor.Device.ps1xml',
+                            'ObjectDefinitions/LogicMonitor.SDT.ps1xml',
+                            'ObjectDefinitions/LogicMonitor.SDTHistory.ps1xml'
                         )
 }
