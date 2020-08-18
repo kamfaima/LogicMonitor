@@ -48,7 +48,10 @@ function Get-LMCollector {
         }
 
         $response = Invoke-LMRestMethod -Method "GET" -Uri $uri -RequestParameters $RequestParameters
-        $response | ForEach-Object { $_.PSObject.TypeNames.Insert(0, "LogicMonitor.Collector") }
+
+        if ($null -ne $response) {
+            $response | ForEach-Object { $_.PSObject.TypeNames.Insert(0, "LogicMonitor.Collector") }
+        }
 
         $response
     }
