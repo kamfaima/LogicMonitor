@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+    <ViewDefinitions>
+        <View>
+            <Name>Default</Name>
+            <ViewSelectedBy>
+                <TypeName>LogicMonitor.SDT</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader>
+                        <Label>ID</Label>
+                        <Width>8</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Creator</Label>
+                        <Width>20</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Start Date Time</Label>
+                        <Width>27</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>End Date Time</Label>
+                        <Width>27</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Type</Label>
+                        <Width>30</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Display Name</Label>
+                        <Width>20</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Comment</Label>
+                        <Width>40</Width>
+                    </TableColumnHeader>
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>id</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>admin</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>startDateTimeOnLocal</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>endDateTimeOnLocal</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>type</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>deviceDisplayName</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                               <PropertyName>comment</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+    </ViewDefinitions>
+</Configuration>
