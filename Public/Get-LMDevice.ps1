@@ -4,7 +4,7 @@ function Get-LMDevice {
         Returns LogicMonitor Devices unless given an Id or request parameter to
         filter the results.
     .DESCRIPTION
-        By default, returns 50 LogicMonitor Devices unless given an Id or
+        By default, returns ALL LogicMonitor Devices unless given an Id or
         request parameter to filter the results.
 
         Retrieving a device using customer, hostname or displayname parameters
@@ -78,7 +78,10 @@ function Get-LMDevice {
         }
 
         $response = Invoke-LMRestMethod -Method "GET" -Uri $uri -RequestParameters $RequestParameters
-        $response | ForEach-Object { $_.PSObject.TypeNames.Insert(0, "LogicMonitor.Device") }
+
+        if ($null -ne $response) {
+            $response | ForEach-Object { $_.PSObject.TypeNames.Insert(0, "LogicMonitor.Device") }
+        }
 
         $response
     }
