@@ -21,15 +21,21 @@
 
     # Which PowerShell functions are exported from your module? (eg. Get-CoolObject)
     FunctionsToExport = @(
+                            'Add-LMCollectorSDT',
                             'Add-LMDevice',
+                            'Add-LMDeviceSDT',
+                            'Add-LMDeviceGroupSDT',
+                            'Add-LMWebsiteSDT',
                             'Get-LMCollector',
                             'Get-LMCollectorGroup',
                             'Get-LMDevice',
                             'Get-LMSDT',
                             'Get-LMSDTHistory',
+                            'Get-LMWebsite',
                             'Invoke-LMRestMethod',
                             'Remove-LMAPICredential',
                             'Remove-LMDevice',
+                            'Remove-LMSDT',
                             'Set-LMAPICredential'
                         )
 
@@ -48,6 +54,7 @@
                             'ObjectDefinitions/LogicMonitor.CollectorGroup.ps1xml',
                             'ObjectDefinitions/LogicMonitor.Device.ps1xml',
                             'ObjectDefinitions/LogicMonitor.SDT.ps1xml',
-                            'ObjectDefinitions/LogicMonitor.SDTHistory.ps1xml'
+                            'ObjectDefinitions/LogicMonitor.SDTHistory.ps1xml',
+                            'ObjectDefinitions/LogicMonitor.Website.ps1xml'
                         )
 }
