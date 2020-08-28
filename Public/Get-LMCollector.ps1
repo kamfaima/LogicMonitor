@@ -16,6 +16,10 @@ function Get-LMCollector {
 
         Returns Collector with Id 4
     .EXAMPLE
+        Get-LMCollector ACME
+
+        Returns Collector(s) with name ACME
+    .EXAMPLE
         Get-LMCollector -RequestParameters "sort=-Id"
 
         Returns array with elements in descending Collector Id order
@@ -34,6 +38,9 @@ function Get-LMCollector {
         [ValidateRange("Positive")]
         [Int32] $Id,
 
+        [Parameter(Position = 0, ParameterSetName = "Hostname")]
+        [String] $Hostname,
+
         [Parameter()]
         [string] $RequestParameters
     )
@@ -45,10 +52,19 @@ function Get-LMCollector {
             "Id" {
                 $uri += "/$Id"
             }
+            "Hostname" {
+                $RequestParameters += "filter=hostname~`"$Hostname`""
+            }
         }
 
-        $response = Invoke-LMRestMethod -Method "GET" -Uri $uri -RequestParameters $RequestParameters
+        try {
+            $response = Invoke-LMRestMethod -Method "GET" -Uri $uri -RequestParameters $RequestParameters
+        } catch {
+            $PSCmdlet.ThrowTerminatingError($PSItem)
+        }
 
+        # Insert TypeNames to define formatting only if $response is not null as request parameter query to
+        # Invoke-LMRestMethod can return zero results, i.e. null
         if ($null -ne $response) {
             $response | ForEach-Object { $_.PSObject.TypeNames.Insert(0, "LogicMonitor.Collector") }
         }

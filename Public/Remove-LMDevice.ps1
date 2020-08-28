@@ -17,7 +17,7 @@ function Remove-LMDevice {
 
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = "High")]
     param (
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, Position = 0, ValueFromPipelineByPropertyName)]
         [Int32]
         $Id,
 
@@ -33,8 +33,12 @@ function Remove-LMDevice {
             $ConfirmPreference = 'None'
         }
 
-        if ($PSCmdlet.ShouldProcess($Id,"Remove device from LogicMonitor")) {
-            $null = Invoke-LMRestMethod -method "DELETE" -uri $uri
+        if ($PSCmdlet.ShouldProcess($Id, "Remove device from LogicMonitor")) {
+            try {
+                $null = Invoke-LMRestMethod -method "DELETE" -uri $uri
+            } catch {
+                $PSCmdlet.ThrowTerminatingError($PSItem)
+            }
         }
 
     }

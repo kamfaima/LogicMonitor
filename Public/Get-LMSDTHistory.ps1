@@ -44,7 +44,7 @@ function Get-LMSDTHistory {
         [Parameter(ParameterSetName = "DeviceId")]
         [Int32] $DeviceId,
 
-        [Parameter(Mandatory, ParameterSetName = "DeviceDisplayName")]
+        [Parameter(Mandatory, Position = 0, ParameterSetName = "DeviceDisplayName")]
         [String] $DeviceDisplayName,
 
         [Parameter(ParameterSetName = "WebsiteId")]
@@ -79,8 +79,14 @@ function Get-LMSDTHistory {
 
         }
 
-        $response = Invoke-LMRestMethod -Method "GET" -Uri $uri -RequestParameters $RequestParameters
+        try {
+            $response = Invoke-LMRestMethod -Method "GET" -Uri $uri -RequestParameters $RequestParameters
+        } catch {
+            $PSCmdlet.ThrowTerminatingError($PSItem)
+        }
 
+        # Insert TypeNames to define formatting only if $response is not null as request parameter query to
+        # Invoke-LMRestMethod can return zero results, i.e. null
         if ($null -ne $response) {
             $response | ForEach-Object { $_.PSObject.TypeNames.Insert(0, "LogicMonitor.SDTHistory") }
         }
