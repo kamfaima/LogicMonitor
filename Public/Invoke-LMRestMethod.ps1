@@ -65,7 +65,7 @@ function Invoke-LMRestMethod {
         $allData = [System.Collections.ArrayList]::new()
 
         do {
-            $fullRequestParameters = "&offset=$($count)&$($RequestParameters)"
+            $fullRequestParameters = "offset=$($count)&$($RequestParameters)"
 
             <# Use TLS 1.2 #>
             [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12

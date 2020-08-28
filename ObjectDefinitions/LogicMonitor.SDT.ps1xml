@@ -13,7 +13,7 @@
                         <Width>8</Width>
                     </TableColumnHeader>
                     <TableColumnHeader>
-                        <Label>Creator</Label>
+                        <Label>Admin</Label>
                         <Width>20</Width>
                     </TableColumnHeader>
                     <TableColumnHeader>

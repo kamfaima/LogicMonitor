@@ -17,6 +17,10 @@ function Get-LMCollectorGroup {
 
         Returns Collector Group with Id 4
     .EXAMPLE
+        Get-LMCollectorGroup ACME
+
+        Returns Collector Group(s) with name ACME
+    .EXAMPLE
         Get-LMCollectorGroup -RequestParameters "sort=-Id"
 
         Returns array with elements in descending Collector Group Id order
@@ -35,6 +39,9 @@ function Get-LMCollectorGroup {
         [ValIdateRange("Positive")]
         [Int32] $Id,
 
+        [Parameter(Position = 0, ParameterSetName = "Name")]
+        [String] $Name,
+
         [Parameter()]
         [string] $RequestParameters
     )
@@ -46,10 +53,19 @@ function Get-LMCollectorGroup {
             "Id" {
                 $uri += "/$Id"
             }
+            "Name" {
+                $RequestParameters += "filter=name~`"$Name`""
+            }
         }
 
-        $response = Invoke-LMRestMethod -Method "GET" -Uri $uri -RequestParameters $RequestParameters
+        try {
+            $response = Invoke-LMRestMethod -Method "GET" -Uri $uri -RequestParameters $RequestParameters
+        } catch {
+            $PSCmdlet.ThrowTerminatingError($PSItem)
+        }
 
+        # Insert TypeNames to define formatting only if $response is not null as request parameter query to
+        # Invoke-LMRestMethod can return zero results, i.e. null
         if ($null -ne $response) {
             $response | ForEach-Object { $_.PSObject.TypeNames.Insert(0, "LogicMonitor.CollectorGroup") }
         }
