@@ -26,6 +26,7 @@
                             'Add-LMDeviceSDT',
                             'Add-LMDeviceGroupSDT',
                             'Add-LMWebsiteSDT',
+                            'Get-LMAlert',
                             'Get-LMCollector',
                             'Get-LMCollectorGroup',
                             'Get-LMDevice',
@@ -50,6 +51,7 @@
 
     # Format files (.ps1xml) to be loaded when importing this module
     FormatsToProcess = @(
+                            'ObjectDefinitions/LogicMonitor.Alert.ps1xml',
                             'ObjectDefinitions/LogicMonitor.Collector.ps1xml',
                             'ObjectDefinitions/LogicMonitor.CollectorGroup.ps1xml',
                             'ObjectDefinitions/LogicMonitor.Device.ps1xml',
